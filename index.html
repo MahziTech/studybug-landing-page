@@ -1190,52 +1190,68 @@
       window.document.addEventListener("scroll", onScroll);
     </script>
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-    <script>
-      function submitForm() {
-        const fullNameInput = document.getElementsByName('fullName')[0];
-        const emailInput = document.getElementsByName('email')[0];
-  
-        const fullName = fullNameInput.value.trim();
-        const email = emailInput.value.trim();
-  
-        // Check if the fields are not empty
-        if (fullName === '' || email === '') {
-          Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Please enter both your full name and email.',
-          });
-          return;
-        }
-  
-        // Make sure you replace 'your-node-api-url' with the actual URL of your Node.js API
-        fetch('your-node-api-url/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ fullName, email }),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            // Display the response using Swal
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: data.message,
-            });
-          })
-          .catch((error) => {
-            console.error('Error sending data:', error);
-            // Display the error using Swal
+      <script>
+        function submitForm() {
+          const fullNameInput = document.getElementsByName('fullName')[0];
+          const emailInput = document.getElementsByName('email')[0];
+    
+          const fullName = fullNameInput.value.trim();
+          const email = emailInput.value.trim();
+    
+          // Check if the fields are not empty
+          if (fullName === '' || email === '') {
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
-              text: 'Something went wrong!',
+              text: 'Please enter both your full name and email.',
             });
+            return;
+          }
+    
+          // Show the "processing" message
+          Swal.fire({
+            title: 'Processing...',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            onBeforeOpen: () => {
+              Swal.showLoading();
+            },
           });
-      }
-    </script>
+    
+          // Make sure you replace 'your-node-api-url' with the actual URL of your Node.js API
+          fetch('http://127.0.0.1:5500/email/send-email', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ fullName, email }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              // Close the "processing" message
+              Swal.close();
+    
+              // Display the response using Swal
+              Swal.fire({
+                icon: 'success',
+                title: 'Success!',
+                text: data.message,
+              });
+            })
+            .catch((error) => {
+              console.error('Error sending data:', error);
+              // Close the "processing" message
+              Swal.close();
+    
+              // Display the error using Swal
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Something went wrong!',
+              });
+            });
+        }
+      </script>
   
   </body>
 </html>
