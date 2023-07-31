@@ -878,18 +878,18 @@
           data-wow-delay=".2s"
         >
           <h3 class="ud-contact-form-title">Join Waitlist</h3>
-          <form class="ud-contact-form">
+          <form id="emailForm" class="ud-contact-form">
             <div class="ud-form-group">
               <label for="fullName">Full Name*</label>
-              <input type="text" name="fullName" placeholder="Jon Snow" required />
+              <input type="text" id="fullName" name="fullName" placeholder="Jon Snow" required />
             </div>
             <div class="ud-form-group">
               <label for="email">Email*</label>
-              <input type="email" name="email" placeholder="example@yourmail.com" required />
+              <input type="email" id="email" name="email" placeholder="example@yourmail.com" required />
             </div>
                     
             <div class="ud-form-group mb-0">
-              <button type="button" class="ud-main-btn" onclick="sendEmail()">
+              <button type="submit" class="ud-main-btn"">
                 Submit
               </button>
             </div>
@@ -1189,5 +1189,77 @@
 
       window.document.addEventListener("scroll", onScroll);
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      document.getElementById('emailForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+  
+        const emailInput = document.getElementById('email');
+        const fullnameInput = document.getElementById('fullname');
+        const email = emailInput.value.trim();
+        const fullname = fullnameInput.value.trim();
+  
+        // Validate email and fullname fields
+        if (!email || !fullname) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Please fill out all the fields',
+            iconColor: '#8e44ad', // Purple color
+          });
+          return;
+        }
+  
+        const formData = new FormData(event.target);
+        const apiUrl = 'https://studybug.vercel.app/sendEmail';
+  
+        // Show processing message with loading spinner
+        const processingSwal = Swal.fire({
+          title: 'Processing',
+          html: 'Please wait while sending the email...',
+          allowOutsideClick: false,
+          showConfirmButton: false,
+          willOpen: () => {
+            Swal.showLoading();
+          },
+        });
+  
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(Object.fromEntries(formData)),
+        })
+          .then(response => response.json())
+          .then(data => {
+            // Close the processing message
+            processingSwal.close();
+  
+            // Display a success toast
+            Swal.fire({
+              icon: 'success',
+              title: 'Success',
+              text: 'Email sent successfully',
+              iconColor: '#8e44ad', // Purple color
+            });
+            console.log(data);
+          })
+          .catch(error => {
+            // Close the processing message
+            processingSwal.close();
+  
+            // Display an error toast
+            Swal.fire({
+              icon: 'error',
+              title: 'Error',
+              text: 'Error occurred while sending the email',
+              iconColor: '#8e44ad', // Purple color
+            });
+            console.error('Error:', error);
+          });
+      });
+    </script>
+  
   </body>
 </html>
