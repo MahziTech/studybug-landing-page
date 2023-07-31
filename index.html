@@ -1193,12 +1193,12 @@
     <script>
       document.getElementById('emailForm').addEventListener('submit', function(event) {
         event.preventDefault();
-  
+    
         const emailInput = document.getElementById('email');
-        const fullnameInput = document.getElementById('fullname');
+        const fullnameInput = document.getElementById('fullName'); // Fixed the ID here
         const email = emailInput.value.trim();
         const fullname = fullnameInput.value.trim();
-  
+    
         // Validate email and fullname fields
         if (!email || !fullname) {
           Swal.fire({
@@ -1209,10 +1209,10 @@
           });
           return;
         }
-  
+    
         const formData = new FormData(event.target);
         const apiUrl = 'https://studybug.vercel.app/sendEmail';
-  
+    
         // Show processing message with loading spinner
         const processingSwal = Swal.fire({
           title: 'Processing',
@@ -1223,7 +1223,7 @@
             Swal.showLoading();
           },
         });
-  
+    
         fetch(apiUrl, {
           method: 'POST',
           headers: {
@@ -1235,7 +1235,7 @@
           .then(data => {
             // Close the processing message
             processingSwal.close();
-  
+    
             // Display a success toast
             Swal.fire({
               icon: 'success',
@@ -1248,7 +1248,7 @@
           .catch(error => {
             // Close the processing message
             processingSwal.close();
-  
+    
             // Display an error toast
             Swal.fire({
               icon: 'error',
@@ -1260,6 +1260,7 @@
           });
       });
     </script>
+    
   
   </body>
 </html>
