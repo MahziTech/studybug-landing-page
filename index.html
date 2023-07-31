@@ -1189,55 +1189,5 @@
 
       window.document.addEventListener("scroll", onScroll);
     </script>
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-      <script>
-        function sendEmail() {
-          const fullName = document.getElementsByName('fullName')[0].value;
-          const email = document.getElementsByName('email')[0].value;
-    
-          // Show the "processing" message
-          Swal.fire({
-            title: 'Processing...',
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            onBeforeOpen: () => {
-              Swal.showLoading();
-            },
-          });
-    
-          // Make the request to the Netlify serverless function
-          fetch('/.netlify/functions/send-email', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ fullName, email }),
-          })
-          .then((response) => response.json())
-          .then((data) => {
-            // Close the "processing" message
-            Swal.close();
-    
-            // Display the response using Swal
-            Swal.fire({
-              icon: 'success',
-              title: 'Success!',
-              text: data.message,
-            });
-          })
-          .catch((error) => {
-            console.error('Error sending data:', error);
-            // Close the "processing" message
-            Swal.close();
-    
-            // Display the error using Swal
-            Swal.fire({
-              icon: 'error',
-              title: 'Oops...',
-              text: 'Something went wrong!',
-            });
-          });
-        }
-      </script>
   </body>
 </html>
