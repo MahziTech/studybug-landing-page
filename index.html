@@ -880,8 +880,8 @@
           <h3 class="ud-contact-form-title">Join Waitlist</h3>
           <form id="emailForm" class="ud-contact-form">
             <div class="ud-form-group">
-              <label for="fullName">Full Name*</label>
-              <input type="text" id="fullName" name="fullName" placeholder="Jon Snow" required />
+              <label for="fullname">Full Name*</label>
+              <input type="text" id="fullname" name="fullname" placeholder="Jon Snow" required />
             </div>
             <div class="ud-form-group">
               <label for="email">Email*</label>
@@ -1195,7 +1195,7 @@
         event.preventDefault();
     
         const emailInput = document.getElementById('email');
-        const fullnameInput = document.getElementById('fullName'); // Fixed the ID here
+        const fullnameInput = document.getElementById('fullname'); // Fixed the ID here
         const email = emailInput.value.trim();
         const fullname = fullnameInput.value.trim();
     
