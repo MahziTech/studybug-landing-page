@@ -1243,9 +1243,9 @@
               text: 'Email sent successfully',
               iconColor: '#8e44ad', // Purple color
             });
-            // Hide the form fields
-            const form = document.getElementById('emailForm');
-            form.style.display = 'none';
+            // Clear the input fields
+            document.getElementById('fullname').value = '';
+            document.getElementById('email').value = '';
             console.log(data);
           })
           .catch(error => {
