@@ -1216,7 +1216,7 @@
         // Show processing message with loading spinner
         const processingSwal = Swal.fire({
           title: 'Processing',
-          html: 'Please wait while sending the email...',
+          html: 'Please wait while sending we're sending your application ...',
           allowOutsideClick: false,
           showConfirmButton: false,
           willOpen: () => {
@@ -1240,7 +1240,7 @@
             Swal.fire({
               icon: 'success',
               title: 'Success',
-              text: 'Email sent successfully',
+              text: 'Request sent successfully',
               iconColor: '#8e44ad', // Purple color
             });
             // Clear the input fields
@@ -1256,7 +1256,7 @@
             Swal.fire({
               icon: 'error',
               title: 'Error',
-              text: 'Error occurred while sending the email',
+              text: 'Error occurred while joining the waitlist',
               iconColor: '#8e44ad', // Purple color
             });
             console.error('Error:', error);
