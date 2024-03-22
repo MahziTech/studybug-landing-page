@@ -1,21 +1,10 @@
-/* =======
 
-	Template Name: Play Bootstrap
-	Author: UIdeck
-	Author URI: https://uideck.com/
-	Support: https://github.com/uideck/
-	Version: 1.0
-
-======== */
-/*===========================
-  COMMON css 
-===========================*/
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800;900&display=swap");
 :root {
   --font: "Inter", sans-serif;
   --body-color: #637381;
-  --heading-color: #212b36;
-  --primary-color: #7b15a3;
+  --heading-color: #0b3131;
+  --primary-color: #0b3131;
   --white: #ffffff;
 }
 
@@ -871,6 +860,8 @@ p {
 @media only screen and (min-width: 768px) and (max-width: 991px), (max-width: 767px) {
   .ud-about-image {
     text-align: center;
+    display: flex; justify-content: center; align-items: center;
+    margin-top: 30px;
   }
 }
 
