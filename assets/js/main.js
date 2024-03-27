@@ -17,7 +17,7 @@
     if (ud_header.classList.contains("sticky")) {
       logo.src = "assets/images/logo/new_logo.png";
     } else {
-      logo.src = "assets/images/logo/new_logo.png";
+      logo.src = "assets/images/logo/Logo_Trans.svg";
     }
 
     // show or hide the back-top-top button
