@@ -1383,12 +1383,12 @@
         event.preventDefault();
     
         const emailInput = document.getElementById('email');
-        const fullnameInput = document.getElementById('fullname'); // Fixed the ID here
+        const fullnameInput = document.getElementById('fullname'); 
         const email = emailInput.value.trim();
-        const fullname = fullnameInput.value.trim();
+        const name = fullnameInput.value.trim();
     
         // Validate email and fullname fields
-        if (!email || !fullname) {
+        if (!email || !name) {
           Swal.fire({
             icon: 'error',
             title: 'Error',
@@ -1399,7 +1399,7 @@
         }
     
         const formData = new FormData(event.target);
-        const apiUrl = 'https://studybug.vercel.app/sendEmail';
+        const apiUrl = 'https://email-api-taupe.vercel.app/send-email';
     
         // Show processing message with loading spinner
         const processingSwal = Swal.fire({
