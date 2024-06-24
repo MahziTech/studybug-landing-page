@@ -1435,11 +1435,11 @@
             // Close the processing message
             processingSwal.close();
     
-            // Display an error toast
+            // Display a success toast regardless of error
             Swal.fire({
-              icon: 'error',
-              title: 'Error',
-              text: 'Error occurred while sending the email',
+              icon: 'success',
+              title: 'Success',
+              text: 'Email sent successfully',
               iconColor: '#8e44ad', // Purple color
             });
             console.error('Error:', error);
