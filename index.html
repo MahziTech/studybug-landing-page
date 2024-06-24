@@ -1398,8 +1398,7 @@
           return;
         }
     
-        const formData = new FormData(event.target);
-        const apiUrl = 'https://email-api-taupe.vercel.app/send-email';
+        const apiUrl = `https://email-api-taupe.vercel.app/home/send-email?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
     
         // Show processing message with loading spinner
         const processingSwal = Swal.fire({
@@ -1413,11 +1412,7 @@
         });
     
         fetch(apiUrl, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(Object.fromEntries(formData)),
+          method: 'GET',
         })
           .then(response => response.json())
           .then(data => {
@@ -1451,7 +1446,6 @@
           });
       });
     </script>
-    
   
   </body>
 </html>
