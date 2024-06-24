@@ -1398,7 +1398,7 @@
           return;
         }
     
-        const apiUrl = `https://email-api-taupe.vercel.app/home/send-email?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
+        const apiUrl = 'https://email-api-taupe.vercel.app/home/send-email';
     
         // Show processing message with loading spinner
         const processingSwal = Swal.fire({
@@ -1412,7 +1412,11 @@
         });
     
         fetch(apiUrl, {
-          method: 'GET',
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email, name }),
         })
           .then(response => response.json())
           .then(data => {
